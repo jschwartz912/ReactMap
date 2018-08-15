@@ -1,0 +1,90 @@
+.App {
+    background: #d3d3d3;
+}
+
+.row {
+    flex-wrap: nowrap;
+    margin: 1.25rem 0;
+}
+
+/* .[class*='col'] {
+    margin: 0;
+} */
+
+.card {
+    word-wrap: normal;
+    /* border-radius: 0; */
+    margin: 2rem;
+    border-color: #004278;
+}
+
+.card-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.legend-text {
+    font-size: 1em;
+    margin: 0;
+}
+
+#northeast {
+    background: green;
+}
+
+.northeastMarker {
+    color: green;
+}
+
+#northwest {
+    background: blue;
+}
+
+.northwestMarker {
+    color: blue;
+}
+
+#southeast {
+    background: red;
+}
+
+.southeastMarker {
+    color: red;
+}
+
+#southwest {
+    background: yellow;
+}
+
+.southwestMarker {
+    color: yellow;
+}
+
+#center {
+    background: violet;
+}
+
+.centerMarker {
+    color: violet;
+}
+
+/* .marker {
+    position: 'absolute';
+    width: 10;
+    height: 10;
+    left: -5;
+    top: -5;
+
+    border: '5px solid transparent';
+    border-radius: 10;
+    background-color: 'white';
+    text-align: 'center';
+    color: '#3f51b5';
+    font-size: 16;
+    font-weight: 'bold';
+    padding: 4;
+} */
+
+.hidden {
+    display: none;
+}
