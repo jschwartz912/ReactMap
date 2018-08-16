@@ -195,7 +195,7 @@ class Legend extends Component {
         </div>
         <footer className="App-footer">
           <div>
-            <a href="https://github.com/jschwartz912/jschwartz912.github.io">
+            <a href="https://github.com/jschwartz912/ReactMap">
               <i className="fa fa-github" />
             </a>
           </div>
