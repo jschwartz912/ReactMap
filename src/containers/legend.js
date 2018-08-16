@@ -200,7 +200,7 @@ class Legend extends Component {
             </a>
           </div>
           <div>
-            <a href="https://jschwartz912.github.io/react-map">
+            <a href="https://jschwartz912.github.io">
               <i className="fa fa-window-maximize" />
             </a>
           </div>
