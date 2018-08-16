@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { refreshMarkers, setMarkerLimit } from '../actions';
+import {
+  refreshMarkers,
+  setMarkerLimit,
+  setHemisphereVisibility
+} from '../actions';
 import $ from 'jquery';
 import logo from '../../src/logo.svg';
 
@@ -22,14 +26,14 @@ class Legend extends Component {
   }
 
   /**
-   * Toggle marker visibility for selected hemisphere
+   * Toggle marker/cluster visibility for selected hemisphere
    *
    * @param {element} e - checkbox clicked
    */
   toggleHemisphere(e) {
-    const hemClass = '.' + e.target.id.replace(/Check/i, 'Marker');
-    const markers = Array.from(document.querySelectorAll(hemClass));
-    markers.forEach(mark => mark.classList.toggle('hidden'));
+    const hemClass = e.target.id.replace(/Check/i, 'Marker');
+    // NEED TO SET REDUX STATE
+    this.props.setHemisphereVisibility(hemClass);
   }
 
   // Tell map to reload markers
@@ -217,7 +221,10 @@ function mapStateToProps({ markers, markerCount, markerLimit }) {
 
 // Action creators
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ refreshMarkers, setMarkerLimit }, dispatch);
+  return bindActionCreators(
+    { refreshMarkers, setMarkerLimit, setHemisphereVisibility },
+    dispatch
+  );
 }
 
 export default connect(

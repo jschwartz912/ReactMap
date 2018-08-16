@@ -223,14 +223,28 @@ class Map extends Component {
   // Render marker on map
   renderMarker(marker) {
     const { lat, lng, hemisphereClass, key } = marker;
-    const markerClass = `${hemisphereClass} marker`;
+    var markerClass = `${hemisphereClass} marker`;
+    // Defaults to visible
+    if (
+      this.state.clustering ||
+      !this.props.hemisphereVisibility[hemisphereClass]
+    ) {
+      markerClass = markerClass + 'hidden';
+    }
     return <Marker markerClass={markerClass} lat={lat} lng={lng} key={key} />;
   }
 
   // Render cluster on map
   renderCluster(cluster) {
     const { lat, lng, hemisphereClass, key, text } = cluster;
-    const clusterClass = `${hemisphereClass} cluster`;
+    var clusterClass = `${hemisphereClass} cluster hidden`;
+    // Defaults to hidden
+    if (
+      this.state.clustering &&
+      this.props.hemisphereVisibility[hemisphereClass]
+    ) {
+      clusterClass = `${hemisphereClass} cluster`;
+    }
     return (
       <Marker
         markerClass={clusterClass}
@@ -248,7 +262,6 @@ class Map extends Component {
         className="map"
         onMouseDown={() => this.setState({ clustering: true })}
         onMouseUp={() => this.setState({ clustering: false })}
-        onMouseLeave={() => this.setState({ clustering: false })}
       >
         <GoogleMapReact
           bootstrapURLKeys={{ key: 'AIzaSyDv2c9lqjsZZLwzFpYmhN5lNVWcRKH3yKY' }}
@@ -259,9 +272,9 @@ class Map extends Component {
           onZoomAnimationStart={() => this.setState({ clustering: true })}
           onZoomAnimationEnd={() => this.setState({ clustering: false })}
         >
-          {this.state.clustering
-            ? this.props.clusters.map(cluster => this.renderCluster(cluster))
-            : this.props.markers.map(mark => this.renderMarker(mark))}
+          {this.props.clusters
+            .map(cluster => this.renderCluster(cluster))
+            .concat(this.props.markers.map(mark => this.renderMarker(mark)))}
         </GoogleMapReact>
       </div>
     );
@@ -269,8 +282,13 @@ class Map extends Component {
 }
 
 // Map redux states to props
-function mapStateToProps({ markers, clusters, markerLimit }) {
-  return { markers, clusters, markerLimit };
+function mapStateToProps({
+  markers,
+  clusters,
+  hemisphereVisibility,
+  markerLimit
+}) {
+  return { markers, clusters, hemisphereVisibility, markerLimit };
 }
 
 // Action creators
