@@ -194,7 +194,7 @@ class Map extends Component {
     };
     const clusterSE = {
       lat: se.lat + latSpan / 4,
-      lng: se.lng - latSpan / 4,
+      lng: se.lng - lngSpan / 4,
       hemisphereClass: 'southeastMarker',
       key: 'se'
     };
